@@ -1,10 +1,10 @@
 library(tidyverse)
 library(ggplot2)
 
-covid <- read_csv("owid-covid-data.csv",
+covid <- read_csv("Data/owid-covid-data.csv",
                   col_types = cols(date = col_date(format = "%Y-%m-%d")))
 
-variants <- read_csv("covid-variants.csv",
+variants <- read_csv("Data/covid-variants.csv",
                   col_types = cols(date = col_date(format = "%Y-%m-%d")))
 
 covid <- covid[covid$location   == "Germany" &
