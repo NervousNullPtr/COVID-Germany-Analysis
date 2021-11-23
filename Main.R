@@ -10,13 +10,13 @@ plot_cd_thres           <- 0
 plot_prim_y_breaks      <- seq(0, 70000, by = 5000)
 plot_sec_y_breaks       <- seq(0, 100, by = 5)
 plot_colors             <- c("firebrick2",
-                             "navyblue",
+                             "#00095c",
                              "green3",
-                             "darkorchid",
+                             "#59afff",
                              "#e67301",
                              "gray55",
                              "black",
-                             "mediumpurple4")
+                             "#0026ff")
 data_path <- "Data/"
 
 covid  <- read_csv(paste(data_path, "owid-covid-data.csv", sep = ""),
@@ -77,7 +77,8 @@ plot <- ggplot(NULL,
         geom_line(data     = c_vars, aes(y = perc_sequences * 500,
                   color    = "(%) Delta variant"),
                   size     = 0.25,
-                  linetype = "dotted")  +
+                  linetype = "dotdash"
+                  )  +
 
         scale_color_manual(name   = "Legend",
                            values = plot_colors) +
