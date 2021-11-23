@@ -1,13 +1,14 @@
 library(tidyverse)
 library(ggplot2)
+library(scales)
+Sys.setlocale("LC_ALL", "en_US.utf8")
 
 plot_time_format        <- "%Y-%m-%d"
 plot_loc                <- "Germany"
 plot_variant            <- "Delta"
 plot_cd_thres           <- 0
-plot_prim_y_breaks      <- c(0, 5000, 10000, 15000, 20000, 25000, 30000,
-                             35000, 40000, 45000, 50000, 55000, 60000, 65000)
-plot_sec_y_breaks       <- c(0, 15, 30, 45, 60, 75, 90, 100)
+plot_prim_y_breaks      <- seq(0, 70000, by = 5000)
+plot_sec_y_breaks       <- seq(0, 100, by = 5)
 plot_colors             <- c("firebrick2",
                              "navyblue",
                              "green3",
@@ -85,5 +86,7 @@ plot <- ggplot(NULL,
         scale_y_continuous(breaks   = plot_prim_y_breaks,
                            sec.axis = sec_axis(~ . / 50000 * 100,
                                                name   = "(%) Percentage",
-                                               breaks = plot_sec_y_breaks))
+                                               breaks = plot_sec_y_breaks)) +
+        scale_x_date(date_breaks = "2 months", date_labels = "%Y-%b")
+
 plot
