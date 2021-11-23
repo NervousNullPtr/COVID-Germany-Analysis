@@ -1,7 +1,7 @@
 library(tidyverse)
 library(ggplot2)
 library(scales)
-Sys.setlocale("LC_ALL", "en_US.utf8")
+Sys.setlocale("LC_ALL", "en_US")
 
 plot_time_format        <- "%Y-%m-%d"
 plot_loc                <- "Germany"
@@ -14,7 +14,7 @@ plot_colors             <- c("firebrick2",
                              "green3",
                              "darkorchid",
                              "#e67301",
-                             "gray55",
+                             "gray78",
                              "black",
                              "mediumpurple4")
 data_path <- "Data/"
@@ -48,11 +48,11 @@ plot <- ggplot(NULL,
         geom_area(data  = covid, aes(y = new_cases,
                   color = "(C) New Cases"),
                   size  = 0.5,
-                  alpha = 0.5) +
+                  alpha = 0.2) +
 
         geom_line(data  = covid, aes(y = new_cases_smoothed,
                   color = "(C) New Cases (smoothed)"),
-                  size  = 0.6)  +
+                  size  = 0.8)  +
 
         geom_line(data  = covid, aes(y = new_deaths,
                   color = "(C) New Deaths"),
