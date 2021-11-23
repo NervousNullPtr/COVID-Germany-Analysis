@@ -13,3 +13,7 @@ Every other file should be self explaining - as there aren't many left.
 
 #
 Have fun with my little project!
+
+# Latest Plot (Inconsistently updated)
+![Alt text](./plot.svg)
+<img src="./plot.svg">
