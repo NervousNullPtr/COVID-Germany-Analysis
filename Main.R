@@ -7,6 +7,7 @@ plot_time_format        <- "%Y-%m-%d"
 plot_loc                <- "Germany"
 plot_variant            <- "Delta"
 plot_cd_thres           <- 0
+plot_perc_scaling       <- 800
 plot_prim_y_breaks      <- seq(0, 100000, by = 5000)
 plot_sec_y_breaks       <- seq(0, 100, by = 5)
 plot_colors             <- c("firebrick2",
@@ -62,19 +63,19 @@ plot <- ggplot(NULL,
                   color = "(C) ICU-Patients"),
                   size  = 0.5)  +
 
-        geom_line(data  = covid, aes(y = people_fully_vaccinated_per_hundred * 500, # nolint
+        geom_line(data  = covid, aes(y = people_fully_vaccinated_per_hundred * 800, # nolint
                   color = "(%) Fully Vacc."),
                   size  = 0.5)  +
 
-        geom_line(data  = covid, aes(y = stringency_index * 500,
+        geom_line(data  = covid, aes(y = stringency_index * plot_perc_scaling,
                   color = "(%) Stringency Index"),
                   size  = 0.5)  +
 
-        geom_line(data  = covid, aes(y = fatality * 500000,
+        geom_line(data  = covid, aes(y = fatality * plot_perc_scaling * 1000,
                   color = "(%) Case Fatality Rate * 10"),
                   size  = 0.5)  +
 
-        geom_line(data     = c_vars, aes(y = perc_sequences * 500,
+        geom_line(data     = c_vars, aes(y = perc_sequences * plot_perc_scaling,
                   color    = "(%) Delta variant"),
                   size     = 0.25,
                   linetype = "dotdash"
@@ -85,7 +86,7 @@ plot <- ggplot(NULL,
         xlab("Date")                             +
         ylab("(C) Cases")                        +
         scale_y_continuous(breaks   = plot_prim_y_breaks,
-                           sec.axis = sec_axis(~ . / 50000 * 100,
+                           sec.axis = sec_axis(~ . / plot_perc_scaling,
                                                name   = "(%) Percentage",
                                                breaks = plot_sec_y_breaks)) +
         scale_x_date(date_breaks = "2 months", date_labels = "%Y-%b")
