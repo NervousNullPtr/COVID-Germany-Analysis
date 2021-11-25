@@ -1,3 +1,7 @@
+required_packages <- c("readr", "ggplot2", "scales")
+new_packages <- required_packages[!(required_packages %in% installed.packages()[,"Package"])]
+if(length(new_packages)) install.packages(new_packages)
+
 library(readr)
 library(ggplot2)
 library(scales)
@@ -44,7 +48,7 @@ covid$fatality <- vec_fatal
 plot <- ggplot(NULL,
             aes(x = date),
                fill = group) +
-           ggtitle("Total COVID-19 Statistics: Germany") +
+           ggtitle(paste("Total COVID-19 Statistics:", plot_loc, sep = " ")) +
 
         geom_area(data  = covid, aes(y = new_cases,
                   color = "(C) New Cases"),

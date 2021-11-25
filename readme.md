@@ -2,6 +2,24 @@
 
 This is purely for fun and interest. Take everything you find with this scripts with a hefty grain of salt.
 
+# Customising the Script
+
+The script is made easy to customise so that you can get your own plot faster:
+
+- To edit the plotted location, simply edit the `plot_loc` variable to your country's name in line 11.
+
+- To change the plotted COVID-variant, edit the `plot_variant` variable in line 12.
+
+- To keep the plot cleaner, cases and deaths below 0 are filtered out.
+To change that setting, edit the `plot_cd_thres` in line 13.
+
+- The scaling of the percentage axis is determined by `plot_perc_scaling` in line 14.
+
+- `plot_prim_y_breaks` in line 15 determines the breaks in the left y-axis.
+
+- `plot_sec_y_breaks` in line 16 contains the breaks for the right y-axis.
+
+- The colors for the plot are defined in line 17 as `plot_colors`.
 
 # Files
 
