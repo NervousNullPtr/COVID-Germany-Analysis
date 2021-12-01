@@ -96,3 +96,7 @@ plot <- ggplot(NULL,
         scale_x_date(date_breaks = "2 months", date_labels = "%Y-%b")
 
 plot
+
+svg("plot.svg")
+plot(rnorm(20))
+dev.off()
