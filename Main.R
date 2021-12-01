@@ -98,8 +98,4 @@ plot <- ggplot(NULL,
 
 plot
 
-svglite("plot.svg",)
-plot(plot)
-dev.off()
-
-ggsave("plot.svg")
+ggsave("plot.svg", plot = plot, width = 18, height = 10)
