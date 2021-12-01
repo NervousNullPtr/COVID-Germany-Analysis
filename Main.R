@@ -1,10 +1,11 @@
-required_packages <- c("readr", "ggplot2", "scales")
+required_packages <- c("readr", "svglite", "ggplot2", "scales")
 new_packages <- required_packages[!(required_packages %in% installed.packages()[,"Package"])]
 if(length(new_packages)) install.packages(new_packages)
 
 library(readr)
 library(ggplot2)
 library(scales)
+library(svglite)
 Sys.setlocale("LC_ALL", "en_US.utf8")
 
 plot_time_format        <- "%Y-%m-%d"
@@ -97,6 +98,8 @@ plot <- ggplot(NULL,
 
 plot
 
-svg("plot.svg")
-plot(rnorm(20))
+svglite("plot.svg",)
+plot(plot)
 dev.off()
+
+ggsave("plot.svg")
