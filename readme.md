@@ -33,4 +33,5 @@ Every other file should be self explaining - as there aren't many left.
 Have fun with my little project!
 
 # Latest Plot (Inconsistently updated)
+WARNING: Around the turn of the year 2021-2022, the data is not at all accurate in Germany due to holidays for health workers.
 <img src="./plot.svg">
