@@ -28,15 +28,9 @@ data_path <- "Data/"
 covid  <- read_csv(paste(data_path, "owid-covid-data.csv", sep = ""),
                    col_types = cols(date = col_date(format = plot_time_format)))
 
-c_vars <- read_csv(paste(data_path, "covid-variants.csv", sep = ""),
-                   col_types = cols(date = col_date(format = plot_time_format)))
-
 covid  <- covid[covid$location   == plot_loc       &
                 covid$new_cases  >= plot_cd_thres  &
                 covid$new_deaths >= plot_cd_thres, ]
-
-c_vars <- c_vars[c_vars$location == plot_loc      &
-                 c_vars$variant  == plot_variant, ]
 
 vec_fatal <- vector(length = length(covid$new_deaths))
 
@@ -79,12 +73,6 @@ plot <- ggplot(NULL,
         geom_line(data  = covid, aes(y = fatality * plot_perc_scaling * 1000,
                   color = "(%) Case Fatality Rate * 10"),
                   size  = 0.5)  +
-
-        geom_line(data     = c_vars, aes(y = perc_sequences * plot_perc_scaling,
-                  color    = "(%) Delta variant"),
-                  size     = 0.25,
-                  linetype = "dotdash"
-                  )  +
 
         scale_color_manual(name   = "Legend",
                            values = plot_colors) +
