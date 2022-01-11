@@ -12,8 +12,8 @@ plot_time_format        <- "%Y-%m-%d"
 plot_loc                <- "Germany"
 plot_variant            <- "Delta"
 plot_cd_thres           <- 0
-plot_perc_scaling       <- 800
-plot_prim_y_breaks      <- seq(0, 100000, by = 5000)
+plot_perc_scaling       <- 600
+plot_prim_y_breaks      <- seq(0, 60000, by = 5000)
 plot_sec_y_breaks       <- seq(0, 100, by = 5)
 plot_colors             <- c(
                              "#00095c",
@@ -21,7 +21,6 @@ plot_colors             <- c(
                              "#59afff",
                              "#e67301",
                              "gray55",
-                             "black",
                              "#0026ff")
 data_path <- "Data/"
 
@@ -45,24 +44,22 @@ plot <- ggplot(NULL,
                fill = group) +
            ggtitle(paste("Total COVID-19 Statistics:", plot_loc, sep = " ")) +
 
-        geom_area(data  = covid, aes(y = new_cases,
-                  color = "(C) New Cases"),
-                  size  = 0.5,
-                  alpha = 0.5) +
-
-        geom_line(data  = covid, aes(y = new_cases_smoothed,
+        geom_area(data  = covid, aes(y = new_cases_smoothed,
                   color = "(C) New Cases (smoothed)"),
-                  size  = 0.6)  +
+                  size  = 0.6,
+                  alpha = 0.5)  +
 
-        geom_line(data  = covid, aes(y = new_deaths,
-                  color = "(C) New Deaths"),
-                  size  = 0.6)  +
+        geom_area(data  = covid, aes(y = new_deaths_smoothed * 10,
+                  color = "(C) New Deaths (smoothed) · 10"),
+                  size  = 0,
+                  alpha = 1,
+                  fill = "#0026ff")  +
 
         geom_line(data  = covid, aes(y = icu_patients,
                   color = "(C) ICU-Patients"),
-                  size  = 0.5)  +
+                  size  = 0.5,)  +
 
-        geom_line(data  = covid, aes(y = people_fully_vaccinated_per_hundred * 800, # nolint
+        geom_line(data  = covid, aes(y = people_fully_vaccinated_per_hundred * plot_perc_scaling, # nolint
                   color = "(%) Fully Vacc."),
                   size  = 0.5)  +
 
@@ -70,8 +67,8 @@ plot <- ggplot(NULL,
                   color = "(%) Stringency Index"),
                   size  = 0.5)  +
 
-        geom_line(data  = covid, aes(y = fatality * plot_perc_scaling * 1000,
-                  color = "(%) Case Fatality Rate * 10"),
+        geom_line(data  = covid, aes(y = fatality * plot_perc_scaling * 100,
+                  color = "(%) Case Fatality Rate"),
                   size  = 0.5)  +
 
         scale_color_manual(name   = "Legend",

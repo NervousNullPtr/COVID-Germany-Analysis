@@ -25,7 +25,7 @@ To change that setting, edit the `plot_cd_thres` in line 13.
 
 ## Updating the COVID-19-Data
 Use the `data-update.sh` to get the latest data for the R-scripts. The source is "Our World In Data".
-The data files are `covid-variants.csv` and `owid-covid-data.csv`.
+The data file is `owid-covid-data.csv`.
 ## Other Files
 Every other file should be self explaining - as there aren't many left.
 
