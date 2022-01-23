@@ -1,1 +1,1 @@
-curl -o Data/owid-covid-data.csv https://covid.ourworldindata.org/data/owid-covid-data.csv
+curl -o Data/owid-covid-data.csv https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv
