@@ -34,4 +34,6 @@ Have fun with my little project!
 
 # Latest Plot (Inconsistently updated)
 WARNING: Around the turn of the year 2021-2022, the data is not at all accurate in Germany due to holidays for health workers.
+\
+INFO: Some data is smoothed out and therefore less accurate when viewing the data day by day. Smoothed data makes sense here so that general developments can be recognised easier.
 <img src="./plot.svg">
