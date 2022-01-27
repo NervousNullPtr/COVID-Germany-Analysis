@@ -12,8 +12,8 @@ plot_time_format        <- "%Y-%m-%d"
 plot_loc                <- "Germany"
 plot_variant            <- "Delta"
 plot_cd_thres           <- 0
-plot_perc_scaling       <- 1400
-plot_prim_y_breaks      <- seq(0, 250000, by = 5000)
+plot_perc_scaling       <- 2400
+plot_prim_y_breaks      <- seq(0, 250000, by = 20000)
 plot_sec_y_breaks       <- seq(0, 100, by = 5)
 plot_colors             <- c(
                              "#00095c",
@@ -26,12 +26,17 @@ data_path <- "Data/"
 
 covid  <- read_csv(paste(data_path, "owid-covid-data.csv", sep = ""),
                    col_types = cols(date = col_date(format = plot_time_format)))
+vec_weekday <- weekdays(as.Date(covid$date))
+covid$weekday  <- vec_weekday 
 
 covid  <- covid[covid$location   == plot_loc       &
                 covid$new_cases  >= plot_cd_thres  &
-                covid$new_deaths >= plot_cd_thres, ]
+                covid$new_deaths >= plot_cd_thres  &
+                covid$weekday != "Sunday"          &
+                covid$weekday != "Saturday"        &
+                covid$weekday != "Monday", ]
 
-vec_fatal <- vector(length = length(covid$new_deaths))
+vec_fatal   <- vector(length = length(covid$new_deaths))
 
 for (i in seq_len(length(covid$new_deaths))) {
     vec_fatal[i] <- covid$total_deaths[i] / covid$total_cases[i]
@@ -44,12 +49,12 @@ plot <- ggplot(NULL,
                fill = group) +
            ggtitle(paste("Total COVID-19 Statistics:", plot_loc, sep = " ")) +
 
-        geom_area(data  = covid, aes(y = new_cases_smoothed,
-                  color = "(C) New Cases (smoothed)"),
+        geom_area(data  = covid, aes(y = new_cases,
+                  color = "(C) New Cases"),
                   size  = 0.6,
                   alpha = 0.5)  +
 
-        geom_area(data  = covid, aes(y = new_deaths_smoothed ,
+        geom_area(data  = covid, aes(y = new_deaths,
                   color = "(C) New Deaths (smoothed)"),
                   size  = 0,
                   alpha = 1,
