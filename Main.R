@@ -55,7 +55,7 @@ plot <- ggplot(NULL,
                   alpha = 0.5)  +
 
         geom_area(data  = covid, aes(y = new_deaths,
-                  color = "(C) New Deaths (smoothed)"),
+                  color = "(C) New Deaths"),
                   size  = 0,
                   alpha = 1,
                   fill = "#0026ff")  +
