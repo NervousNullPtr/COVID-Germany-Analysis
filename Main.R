@@ -13,7 +13,7 @@ plot_loc                <- "Germany"
 plot_variant            <- "Delta"
 plot_cd_thres           <- 0
 plot_perc_scaling       <- 600
-plot_prim_y_breaks      <- seq(0, 100000, by = 5000)
+plot_prim_y_breaks      <- seq(0, 250000, by = 5000)
 plot_sec_y_breaks       <- seq(0, 100, by = 5)
 plot_colors             <- c(
                              "#00095c",
