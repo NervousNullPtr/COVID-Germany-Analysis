@@ -49,8 +49,8 @@ plot <- ggplot(NULL,
                fill = group) +
            ggtitle(paste("Total COVID-19 Statistics:", plot_loc, sep = " ")) +
 
-        geom_area(data  = covid, aes(y = new_cases,
-                  color = "(C) New Cases"),
+        geom_area(data  = covid, aes(y = new_cases_smoothed,
+                  color = "(C) New Cases (smoothed - Data only shows general trend)"),
                   size  = 0.6,
                   alpha = 0.5)  +
 
